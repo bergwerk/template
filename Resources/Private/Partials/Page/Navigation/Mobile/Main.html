@@ -1,0 +1,29 @@
+<f:if condition="{mainMenu}">
+    <ul class="nav nav--main mobile first__level vertical menu" data-responsive-menu="drilldown" data-drilldown
+        data-back-button="{f:format.htmlentities(value: '{f:render(partial: \'Navigation/Mobile/BackButton\')}')}" >
+        <f:for each="{mainMenu}" as="mainItem">
+            <f:render partial="Navigation/Elements/Item" arguments="{item: mainItem, mobile: '1'}"/>
+            <f:if condition="{mainItem.children}">
+                <f:render section="submenu" arguments="{item: mainItem,  mobile: '1', class: 'second__level'}"/>
+            </f:if>
+            </li>
+        </f:for>
+    </ul>
+</f:if>
+
+<f:section name="submenu">
+    <ul class="vertical menu {class}">
+        <li class="nav__headline">
+          <a href="{item.link}" target="{item.target}" title="{item.data.title}">
+            <span>{item.title}</span>
+          </a>
+        </li>
+        <f:for each="{item.children}" as="subItem">
+            <f:render partial="Navigation/Elements/Item" arguments="{item: subItem, mobile: '1'}"/>
+            <f:if condition="{subItem.children}">
+                <f:render section="submenu" arguments="{item: subItem,  mobile: '1', class: 'third__level'}"/>
+            </f:if>
+            </li>
+        </f:for>
+    </ul>
+</f:section>

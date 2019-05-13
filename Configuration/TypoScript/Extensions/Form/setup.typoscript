@@ -1,0 +1,19 @@
+plugin {
+  tx_form {
+    settings {
+      yamlConfigurations {
+        100 = EXT:template/Configuration/Form/Default.yaml
+      }
+    }
+  }
+}
+
+module {
+  tx_form {
+    settings {
+      yamlConfigurations {
+          100 = EXT:template/Configuration/Form/Default.yaml
+      }
+    }
+  }
+}

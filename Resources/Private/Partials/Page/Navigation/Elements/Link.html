@@ -1,0 +1,23 @@
+{namespace bwrk=BERGWERK\Template\ViewHelpers}
+
+<f:if condition="{item.data.target}">
+    <f:then>
+        <a href="{item.link}" target="{item.data.target}" title="{item.data.title}"
+           class="{f:if(condition:item.active, then:'is--active')}">
+    </f:then>
+    <f:else if="{item.target}">
+        <a href="{item.link}" target="{item.target}" title="{item.data.title}"
+           class="{f:if(condition:item.active, then:'is--active')}">
+    </f:else>
+    <f:else>
+        <a href="{item.link}" title="{item.data.title}" class="{f:if(condition:item.active, then:'is--active')}">
+    </f:else>
+</f:if>
+<f:if condition="{item.data.doktype} != 199">
+    <f:format.htmlentitiesDecode>{item.title}</f:format.htmlentitiesDecode>
+    <f:if condition="{mobile} && {item.children}">
+        <bwrk:sprite symbol="arrow-right"/>
+    </f:if>
+</f:if>
+
+</a>

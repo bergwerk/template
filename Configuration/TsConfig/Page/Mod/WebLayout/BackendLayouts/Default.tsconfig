@@ -1,0 +1,29 @@
+#
+# BACKENDLAYOUT: DEFAULT
+#
+mod {
+    web_layout {
+        BackendLayouts {
+            default {
+                title = LLL:EXT:template/Resources/Private/Language/locallang_be.xlf:backend_layout.default
+                icon = EXT:template/Resources/Public/Icons/Backend/BackendLayouts/default.gif
+                config {
+                    backend_layout {
+                        colCount = 1
+                        rowCount = 1
+                        rows {
+                            1 {
+                                columns {
+                                    1 {
+                                        name = LLL:EXT:template/Resources/Private/Language/locallang_be.xlf:backend_layout.column.normal
+                                        colPos = 0
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

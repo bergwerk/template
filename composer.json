@@ -1,0 +1,26 @@
+{
+    "name": "bergwerk/template",
+    "type": "typo3-cms-extension",
+    "description": "A TYPO3 CMS Extension for developing a Basic Foundation TYPO3 Template. In this extension shall all necessary files and dependencies for the TYPO3 Website be included.",
+    "homepage": "https://www.bergwerk.ag/",
+    "license": ["GPL-2.0-or-later"],
+    "keywords": ["TYPO3 CMS"],
+    "version": "1.0.0",
+    "authors": [
+      {
+        "name": "BERGWERK",
+        "role": "Developer",
+        "homepage": "https://www.bergwerk.ag"
+      }
+    ],
+    "require": {
+        "typo3/cms-core": "^9.5",
+        "typo3/cms-rte-ckeditor": "^9.5",
+        "typo3/cms-fluid-styled-content": "^9.5"
+    },
+    "autoload": {
+        "psr-4": {
+            "Bergwerk\\Template\\": "Classes/"
+        }
+    }
+}

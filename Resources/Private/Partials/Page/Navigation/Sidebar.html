@@ -1,0 +1,29 @@
+{namespace bwrk=BERGWERK\Template\ViewHelpers}
+
+<nav class="sidebar__nav">
+    <ul>
+        <f:variable name="parentPages">{bwrk:page.parents(pageId: data.uid, level: level)}</f:variable>
+        <f:for each="{parentPages}" iteration="key" as="parentPage">
+            <f:if condition="{parentPage.doktype} != 199">
+                <f:then>
+                    <li class="{f:if(condition: parentPage.active, then: 'is--active')}">
+                        <f:link.page pageUid="{parentPage.uid}">
+                            <bwrk:sprite symbol="triangle-right"/>
+                            <f:if condition="{parentPage.custom_page_header}">
+                                <f:then>
+                                    <f:format.htmlentitiesDecode value="{parentPage.custom_page_header}"/>
+                                </f:then>
+                                <f:else>
+                                    {parentPage.title}
+                                </f:else>
+                            </f:if>
+                        </f:link.page>
+                    </li>
+                </f:then>
+                <f:else>
+                    <li class="spacer"></li>
+                </f:else>
+            </f:if>
+        </f:for>
+    </ul>
+</nav>

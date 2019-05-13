@@ -1,0 +1,9 @@
+<f:if condition="{item.data.doktype} != 199">
+    <f:then>
+        <li>
+            <f:render partial="Navigation/Elements/Link" arguments="{item: item, mobile: mobile}"/>
+    </f:then>
+    <f:else>
+        <li class="spacer">
+    </f:else>
+</f:if>

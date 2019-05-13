@@ -1,0 +1,25 @@
+<f:if condition="{mainMenu}">
+    <ul class="nav nav--main desktop first__level">
+        <f:for each="{mainMenu}" as="mainItem">
+            <f:render partial="Navigation/Elements/Item" arguments="{item: mainItem}"/>
+            <f:if condition="{mainItem.children}">
+                <f:render section="submenu" arguments="{submenu: mainItem.children, class: 'second__level'}"/>
+            </f:if>
+            </li>
+        </f:for>
+    </ul>
+</f:if>
+
+<f:section name="submenu">
+    <ul class="vertical menu dropdown {class}">
+        <f:for each="{submenu}" as="subItem">
+            <f:render partial="Navigation/Elements/Item" arguments="{item: subItem}"/>
+            <f:if condition="{class} != 'third__level'">
+                <f:if condition="{subItem.children}">
+                    <f:render section="submenu" arguments="{submenu: subItem.children, class: 'third__level'}"/>
+                </f:if>
+            </f:if>
+            </li>
+        </f:for>
+    </ul>
+</f:section>

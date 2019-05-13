@@ -1,0 +1,22 @@
+{namespace bwrk=BERGWERK\Template\ViewHelpers}
+
+<f:if condition="{languageMenu} && {f:count(subject: languageMenu)} > 1">
+    <ul class="nav nav--language">
+        <f:for each="{languageMenu}" as="item">
+            <li class="{f:if(condition: item.active, then: 'is-active')}">
+                <f:if condition="{item.available}">
+                    <f:then>
+                        <a href="{item.link}" hreflang="{item.hreflang}" title="{navigationTitle}" class="{f:if(condition:item.active, then:' is--active')}">
+                            <span>{item.navigationTitle}</span>
+                        </a>
+                    </f:then>
+                    <f:else>
+                        <a href="{bwrk:languageBase(languageId: item.languageId, pageId: pageId)}" hreflang="{item.hreflang}" title="{navigationTitle}">
+                            <span>{item.navigationTitle}</span>
+                        </a>
+                    </f:else>
+                </f:if>
+            </li>
+        </f:for>
+    </ul>
+</f:if>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+    <file target-language="de" datatype="plaintext" original="messages" date="2019-05-10UTC12:03:290">
+        <header>
+            <authorName>Konstantin Sölch</authorName>
+            <authorEmail>ks@bergwerk.ag</authorEmail>
+        </header>
+        <body>
+            <trans-unit id="backend_layout.default">
+                <target>Default</target>
+            </trans-unit>
+            <trans-unit id="backend_layout.column.normal">
+                <target>Normal</target>
+            </trans-unit>
+            <trans-unit id="backend_layout.column.left">
+                <target>Links</target>
+            </trans-unit>
+            <trans-unit id="backend_layout.column.right">
+                <target>Rechts</target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

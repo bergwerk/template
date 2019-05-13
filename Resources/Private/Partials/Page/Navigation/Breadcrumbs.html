@@ -1,0 +1,20 @@
+{namespace bwrk=BERGWERK\Template\ViewHelpers}
+
+<f:if condition="{breadcrumbs} && {f:count(subject: breadcrumbs)} > 1">
+    <ul class="breadcrumbs show-for-large">
+        <f:for each="{breadcrumbs}" as="item">
+            <li>
+                <f:if condition="{item.current}">
+                    <f:then>
+                        <span>{item.title}</span>
+                    </f:then>
+                    <f:else>
+                        <a href="{item.link}" hreflang="{item.hreflang}" target="{item.target}">
+                            {item.title}
+                        </a>
+                    </f:else>
+                </f:if>
+            </li>
+        </f:for>
+    </ul>
+</f:if>
