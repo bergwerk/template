@@ -6,6 +6,7 @@ use TYPO3\CMS\Core\Configuration\SiteConfiguration;
 use TYPO3\CMS\Core\Context\LanguageAspect;
 use TYPO3\CMS\Core\Core\Environment;
 use TYPO3\CMS\Core\Site\Entity\Site;
+use TYPO3\CMS\Core\Site\Entity\SiteLanguage;
 use TYPO3\CMS\Core\Site\SiteFinder;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3Fluid\Fluid\Core\Rendering\RenderingContextInterface;
@@ -35,29 +36,29 @@ class LanguageBaseViewHelper extends AbstractViewHelper
 
         /** @var SiteFinder $siteFinder */
         $siteFinder = GeneralUtility::makeInstance(SiteFinder::class);
-        
+
         /** @var LanguageAspect $languageAspect */
         $languageAspect = GeneralUtility::makeInstance(LanguageAspect::class);
 
         $languageId = $arguments['languageId'];
-        
+
         if(empty($languageId)) {
             $languageId = $languageAspect->getId();
         }
-        
+
         /** @var Site $site */
         $site = $siteFinder->getSiteByPageId($arguments['pageId']);
 
-        /** @var SiteConfiguration $siteConfigurationManager */
-        $siteConfigurationManager = GeneralUtility::makeInstance(SiteConfiguration::class, Environment::getConfigPath() . '/sites');
+        /** @var SiteFinder $siteFinder */
+        $siteFinder = GeneralUtility::makeInstance(SiteFinder::class);
 
-        $siteConfiguration = $siteConfigurationManager->load($site->getIdentifier());
+        /** @var Site $siteConfiguration */
+        $siteConfiguration = $siteFinder->getSiteByIdentifier($site->getIdentifier());
 
-        $languageKey = array_search($languageId, array_column($siteConfiguration['languages'], 'languageId'));
+        /** @var SiteLanguage $currentLanguage */
+        $currentLanguage = $siteConfiguration->getLanguageById($languageId);
 
-        $currentLanguage = $siteConfiguration['languages'][$languageKey];
-
-        return $currentLanguage['base'];
+        return $currentLanguage->getBase();
     }
 }
 

@@ -280,7 +280,7 @@ config {
     index_enable = 1
     index_externals = 1
     index_metatags = 1
-    headerComment = Konzept. Design. Programmierung. | BERGWERK Werbeagentur GmbH | www.bergwerk.ag 
+    headerComment = Konzept. Design. Programmierung. | BERGWERK Strategie und Marke GmbH | www.bergwerk.ag
 
     // Disable Image Upscaling
     noScaleUp = 1

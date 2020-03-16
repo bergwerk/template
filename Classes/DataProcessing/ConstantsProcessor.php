@@ -10,7 +10,6 @@
 namespace BERGWERK\Template\DataProcessing;
 
 use TYPO3\CMS\Core\TypoScript\Parser\TypoScriptParser;
-use TYPO3\CMS\Core\TypoScript\TypoScriptService;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer;
 use TYPO3\CMS\Frontend\ContentObject\DataProcessorInterface;
@@ -44,28 +43,24 @@ class ConstantsProcessor implements DataProcessorInterface
     {
         // The key to process
         $key = $cObj->stdWrapValue('key', $processorConfiguration);
-        $targetVariableName = $cObj->stdWrapValue('as', $processorConfiguration);
-
         if (empty($key)) {
             $key = 'page';
-        }
-        if (empty($targetVariableName)) {
-            $targetVariableName = 'constants';
         }
 
         // Collect variables
         $flatConstants = $this->getFlatConstants($key);
-
         $typoScriptParser = GeneralUtility::makeInstance(TypoScriptParser::class);
         $typoScriptParser->parse($flatConstants);
-
         $typoScriptArray = $typoScriptParser->setup;
+        $constants = $this->convertTypoScriptArrayToPlainArray($typoScriptArray);
 
-        $typoScriptService = GeneralUtility::makeInstance(TypoScriptService::class);
-
-        $constants = $typoScriptService->convertTypoScriptArrayToPlainArray($typoScriptArray);
-
-        $processedData[$targetVariableName] = $constants;
+        // Set the target variable
+        $targetVariableName = $cObj->stdWrapValue('as', $processorConfiguration);
+        if (!empty($targetVariableName)) {
+            $processedData[$targetVariableName] = $constants;
+        } else {
+            $processedData['constants'] = $constants;
+        }
 
         return $processedData;
     }
@@ -89,5 +84,33 @@ class ConstantsProcessor implements DataProcessorInterface
             }
         }
         return $flatvariables;
+    }
+
+    /**
+     *
+     * This method is copied from TYPO3\CMS\Core\TypoScript\TypoScriptService, since the method is marked as @internal
+     *
+     * @param array $typoScriptArray
+     *
+     * @return array
+     */
+    public function convertTypoScriptArrayToPlainArray(array $typoScriptArray): array
+    {
+        foreach ($typoScriptArray as $key => $value) {
+            if (substr((string)$key, -1) === '.') {
+                $keyWithoutDot = substr((string)$key, 0, -1);
+                $typoScriptNodeValue = $typoScriptArray[$keyWithoutDot] ?? null;
+                if (is_array($value)) {
+                    $typoScriptArray[$keyWithoutDot] = $this->convertTypoScriptArrayToPlainArray($value);
+                    if ($typoScriptNodeValue !== null) {
+                        $typoScriptArray[$keyWithoutDot]['_typoScriptNodeValue'] = $typoScriptNodeValue;
+                    }
+                    unset($typoScriptArray[$key]);
+                } else {
+                    $typoScriptArray[$keyWithoutDot] = null;
+                }
+            }
+        }
+        return $typoScriptArray;
     }
 }
