@@ -2,6 +2,7 @@
 
 namespace BERGWERK\Template\ViewHelpers;
 
+use Closure;
 use TYPO3Fluid\Fluid\Core\Rendering\RenderingContextInterface;
 use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
 
@@ -22,31 +23,31 @@ use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
 class SpriteViewHelper extends AbstractViewHelper
 {
     protected $escapeOutput = false;
-    
+
     public function initializeArguments()
     {
         $this->registerArgument('symbol', 'string', 'Name of the Icon', true);
         $this->registerArgument('class', 'string', 'Option Class on SVG Sprite', false);
     }
-    
-    
+
+
     /**
      * @param array $arguments
-     * @param \Closure $renderChildrenClosure
+     * @param Closure $renderChildrenClosure
      * @param RenderingContextInterface $renderingContext
      *
      * @return mixed|string
      */
     public static function renderStatic(
         array $arguments,
-        \Closure $renderChildrenClosure,
-        RenderingContextInterface $renderingContext)
-    {
-        
+        Closure $renderChildrenClosure,
+        RenderingContextInterface $renderingContext
+    ) {
+
         $html = '<svg class="sprite sprite--' . $arguments['symbol'] . ' ' . $arguments['class'] . '">
                    <use xlink:href="typo3conf/ext/template/Resources/Public/dist/assets/sprite/sprite-symbol.svg#' . $arguments['symbol'] . '"></use>
                 </svg>';
-    
+
         return $html;
     }
 }

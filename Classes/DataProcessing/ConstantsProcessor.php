@@ -39,8 +39,12 @@ class ConstantsProcessor implements DataProcessorInterface
      * @param array $processedData Key/value store of processed data (e.g. to be passed to a Fluid View)
      * @return array the processed data as key/value store
      */
-    public function process(ContentObjectRenderer $cObj, array $contentObjectConfiguration, array $processorConfiguration, array $processedData)
-    {
+    public function process(
+        ContentObjectRenderer $cObj,
+        array $contentObjectConfiguration,
+        array $processorConfiguration,
+        array $processedData
+    ) {
         // The key to process
         $key = $cObj->stdWrapValue('key', $processorConfiguration);
         if (empty($key)) {
@@ -88,11 +92,12 @@ class ConstantsProcessor implements DataProcessorInterface
 
     /**
      *
-     * This method is copied from TYPO3\CMS\Core\TypoScript\TypoScriptService, since the method is marked as @internal
+     * This method is copied from TYPO3\CMS\Core\TypoScript\TypoScriptService, since the method is marked as internal
      *
      * @param array $typoScriptArray
      *
      * @return array
+     *
      */
     public function convertTypoScriptArrayToPlainArray(array $typoScriptArray): array
     {

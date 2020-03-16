@@ -2,13 +2,12 @@
 
 namespace BERGWERK\Template\Controller;
 
-use BERGWERK\BwrkTemplate\Bootstrap;
+use BERGWERK\Template\Bootstrap;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use TYPO3\CMS\Core\Service\OpcodeCacheService;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
-use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
 use TYPO3\CMS\Install\Service\ClearCacheService;
 
 class ClearCacheController extends ActionController

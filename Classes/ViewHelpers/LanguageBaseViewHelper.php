@@ -2,9 +2,9 @@
 
 namespace BERGWERK\Template\ViewHelpers;
 
-use TYPO3\CMS\Core\Configuration\SiteConfiguration;
+use Closure;
 use TYPO3\CMS\Core\Context\LanguageAspect;
-use TYPO3\CMS\Core\Core\Environment;
+use TYPO3\CMS\Core\Exception\SiteNotFoundException;
 use TYPO3\CMS\Core\Site\Entity\Site;
 use TYPO3\CMS\Core\Site\Entity\SiteLanguage;
 use TYPO3\CMS\Core\Site\SiteFinder;
@@ -23,16 +23,16 @@ class LanguageBaseViewHelper extends AbstractViewHelper
 
     /**
      * @param array $arguments
-     * @param \Closure $renderChildrenClosure
+     * @param Closure $renderChildrenClosure
      * @param RenderingContextInterface $renderingContext
      * @return string
-     * @throws \TYPO3\CMS\Core\Exception\SiteNotFoundException
+     * @throws SiteNotFoundException
      */
     public static function renderStatic(
         array $arguments,
-        \Closure $renderChildrenClosure,
-        RenderingContextInterface $renderingContext)
-    {
+        Closure $renderChildrenClosure,
+        RenderingContextInterface $renderingContext
+    ) {
 
         /** @var SiteFinder $siteFinder */
         $siteFinder = GeneralUtility::makeInstance(SiteFinder::class);
@@ -42,7 +42,7 @@ class LanguageBaseViewHelper extends AbstractViewHelper
 
         $languageId = $arguments['languageId'];
 
-        if(empty($languageId)) {
+        if (empty($languageId)) {
             $languageId = $languageAspect->getId();
         }
 

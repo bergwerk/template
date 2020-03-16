@@ -2,7 +2,9 @@
 
 namespace BERGWERK\Template\Command;
 
-use BERGWERK\BwrkTemplate\Bootstrap;
+use BERGWERK\Template\Bootstrap;
+use Exception;
+use InvalidArgumentException;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
@@ -29,8 +31,8 @@ class CiCommandController extends Command
      *
      * @param InputInterface $input
      * @param OutputInterface $output
-     * @throws \InvalidArgumentException
      * @return int
+     * @throws InvalidArgumentException
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
@@ -60,13 +62,13 @@ class CiCommandController extends Command
             $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
 
             if ($httpCode != 200) {
-                throw new \Exception($result, $httpCode);
+                throw new Exception($result, $httpCode);
             }
 
             curl_close($ch);
 
             $output->writeln('<info>' . $result . '</info>');
-        } catch (\Exception $exception) {
+        } catch (Exception $exception) {
             $output->writeln('<error>' . $exception->getMessage() . '</error>');
         }
     }
