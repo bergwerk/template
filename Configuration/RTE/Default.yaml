@@ -4,16 +4,24 @@ imports:
     - { resource: "EXT:rte_ckeditor/Configuration/RTE/Editor/Plugins.yaml" }
 
 editor:
+    externalPlugins:
+        bootstrappackage_table:
+            resource: "EXT:bootstrap_package/Resources/Public/CKEditor/Plugins/Table/plugin.min.js"
+
     config:
-        contentsCss: "EXT:template/Resources/Public/Css/Frontend/rte.css"
-        height: 500
+        contentsCss: "EXT:template/Resources/Public/dist/css/app.css"
 
         stylesSet:
             - { name: "Lead", element: "p", attributes: { 'class': 'lead' } }
-            - { name: "Table Unstriped", element: "table", attributes: { 'class': 'unstriped' } }
-            - { name: "Button Default", element: "a", attributes: { 'class': 'button' } }
-            - { name: "Button Secondary", element: "a", attributes: { 'class': 'button secondary' } }
-            - { name: "Button Anchor", element: "a", attributes: { 'class': 'button-anchor' } }
+            - { name: "Small", element: "small" }
+            - { name: "Table", element: "table", attributes: { 'class': 'table' } }
+            - { name: "Table Kontakt", element: "table", attributes: { 'class': 'table table--contact' } }
+            - { name: "Row Active", element: "tr", attributes: { 'class': 'active' } }
+            - { name: "Row Success", element: "tr", attributes: { 'class': 'success' } }
+            - { name: "Row Info", element: "tr", attributes: { 'class': 'info' } }
+            - { name: "Row Warning", element: "tr", attributes: { 'class': 'warning' } }
+            - { name: "Row Danger", element: "tr", attributes: { 'class': 'danger' } }
+
 
         toolbarGroups:
             - { name: styles, groups: [ format, styles ] }
@@ -36,7 +44,8 @@ editor:
             - text-justify
 
         extraPlugins:
-            - justify
+            - autolink
+            - bootstrappackage_table
 
         removePlugins:
             - image
@@ -45,3 +54,26 @@ editor:
             - Anchor
             - Underline
             - Strike
+
+classesAnchor:
+    page:
+        class: 'link-page'
+        type: 'page'
+    folder:
+        class: 'link-folder'
+        type: 'folder'
+    file:
+        class: 'link-file'
+        type: 'file'
+    external:
+        class: 'link-external'
+        type: 'url'
+    mail:
+        class: 'link-mail'
+        type: 'mail'
+
+buttons:
+    link:
+        properties:
+            class:
+                allowedClasses: 'link, link-reset'

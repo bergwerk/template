@@ -1,0 +1,145 @@
+TYPO3:
+    CMS:
+        Form:
+            persistenceManager:
+                allowedExtensionPaths:
+                    110: EXT:template/Resources/Private/Forms/
+            prototypes:
+                standard:
+                    formElementsDefinition:
+                        Form:
+                            renderingOptions:
+                                translation:
+                                    translationFile:
+                                        110: 'EXT:template/Resources/Private/Language/locallang.xlf'
+                                layoutRootPaths:
+                                    20: 'EXT:template/Resources/Private/Extensions/form/Layouts/'
+                                templateRootPaths:
+                                    20: 'EXT:template/Resources/Private/Extensions/form/Templates/'
+                                partialRootPaths:
+                                    20: 'EXT:template/Resources/Private/Extensions/form/Partials/'
+                                    1505042807: 'EXT:template/Resources/Private/Extensions/form_element_linked_checkbox/Partials/'
+                                formStyleClass: custom-value
+                            formEditor:
+                                propertyCollections:
+                                    finishers:
+                                        10:
+                                            editors:
+                                                1500:
+                                                    identifier: message
+                                                    templateName: Inspector-TextareaEditor
+                                                    label: formEditor.elements.Form.finisher.Confirmation.editor.message.label
+                                                    propertyPath: options.message
+                                                    fieldExplanationText: formEditor.elements.Form.finisher.Confirmation.editor.message.fieldExplanationText
+                        Text:
+                            properties:
+                                elementErrorClassAttribute: 'is-invalid'
+                        AdvancedPassword:
+                            properties:
+                                elementErrorClassAttribute: 'is-invalid'
+                        Date:
+                            properties:
+                                elementErrorClassAttribute: 'is-invalid'
+                        Email:
+                            properties:
+                                elementErrorClassAttribute: 'is-invalid'
+                        Fieldset:
+                            properties:
+                                elementErrorClassAttribute: 'is-invalid'
+                        FileUpload:
+                            properties:
+                                elementErrorClassAttribute: 'is-invalid'
+                        Number:
+                            properties:
+                                elementErrorClassAttribute: 'is-invalid'
+                        Password:
+                            properties:
+                                elementErrorClassAttribute: 'is-invalid'
+                        Url:
+                            properties:
+                                elementErrorClassAttribute: 'is-invalid'
+                        Textarea:
+                            properties:
+                                elementErrorClassAttribute: 'is-invalid'
+                        Telephone:
+                            properties:
+                                elementErrorClassAttribute: 'is-invalid'
+                        Checkbox:
+                            properties:
+                                containerClassAttribute: 'form-check'
+                                elementClassAttribute: 'form-check-input'
+                                elementErrorClassAttribute: 'is-invalid'
+                        GridRow:
+                            formEditor:
+                                editors:
+                                    500:
+                                        identifier: formStyleClass
+                                        templateName: Inspector-SingleSelectEditor
+                                        label: 'Form styling'
+                                        propertyPath: renderingOptions.formStyleClass
+                                        selectOptions:
+                                            10:
+                                                value: ''
+                                                label: 'Default'
+                                            20:
+                                                value: form-row--2-columns
+                                                label: 'Layout: Aufteilung 2 Spalten'
+                            properties:
+                                elementClassAttribute: 'form-row row'
+                        MultiCheckbox:
+                            properties:
+                                containerClassAttribute: 'custom-checkbox-multipled'
+                                elementClassAttribute: 'form-check-input'
+                        MultiSelect:
+                            properties:
+                                elementClassAttribute: 'form-select'
+                                elementErrorClassAttribute: 'is-invalid'
+                        RadioButton:
+                            properties:
+                                containerClassAttribute: 'custom-radio-multiple'
+                                elementClassAttribute: 'form-check-input'
+                                elementErrorClassAttribute: 'is-invalid'
+                        SingleSelect:
+                            properties:
+                                elementClassAttribute: 'form-select'
+                                elementErrorClassAttribute: 'is-invalid'
+                        ImageUpload:
+                            properties:
+                                elementClassAttribute: 'form-control'
+                                elementErrorClassAttribute: 'is-invalid'
+                                imageLinkMaxWidth: 1200
+                                imageMaxWidth: 200
+                                imageMaxHeight: 200
+                        DatePicker:
+                            properties:
+                                elementClassAttribute: 'form-control'
+                                elementErrorClassAttribute: 'is-invalid'
+                                timeSelectorClassAttribute: 'custom-select form-control'
+                    finishersDefinition:
+                        EmailToSender:
+                            options:
+                                layoutRootPaths:
+                                    100: 'EXT:template/Resources/Private/Extensions/form/Layouts/Finishers/Email/'
+                                templateRootPaths:
+                                    20: 'EXT:template/Resources/Private/Extensions/form/Templates/Finishers/Email/'
+                            formEditor:
+                                predefinedDefaults:
+                                    options:
+                                        message: ''
+                            FormEngine:
+                                elements:
+                                    message:
+                                        label: tt_content.finishersDefinition.Confirmation.message.label
+                                        config:
+                                            type: text
+                        EmailToReceiver:
+                            options:
+                                layoutRootPaths:
+                                    100: 'EXT:template/Resources/Private/Extensions/form/Layouts/Finishers/Email/'
+                                templateRootPaths:
+                                    20: 'EXT:template/Resources/Private/Extensions/form/Templates/Finishers/Email/'
+            mixins:
+                formElementMixins:
+                    FormElementMixin:
+                        properties:
+                            elementErrorClassAttribute: 'is-invalid'

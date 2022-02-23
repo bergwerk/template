@@ -1,8 +1,7 @@
 #############
 #### RTE ####
 #############
+
 RTE {
-    default {
-        preset = template
-    }
+    config.pages.custom_page_short_description.preset = minimal
 }

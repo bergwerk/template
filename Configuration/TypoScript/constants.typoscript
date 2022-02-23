@@ -1,7 +1,18 @@
+############################
+### CUSTOM SUBCATEGORIES ###
+############################
+
 ######################
 #### DEPENDENCIES ####
 ######################
-<INCLUDE_TYPOSCRIPT: source="FILE:EXT:fluid_styled_content/Configuration/TypoScript/constants.typoscript">
+<INCLUDE_TYPOSCRIPT: source="FILE:EXT:seo/Configuration/TypoScript/XmlSitemap/constants.typoscript">
+
+<INCLUDE_TYPOSCRIPT: source="FILE:EXT:yoast_seo/Configuration/TypoScript/constants.typoscript">
+
+<INCLUDE_TYPOSCRIPT: source="FILE:EXT:sms_responsive_images/Configuration/TypoScript/Base/constants.typoscript">
+
+<INCLUDE_TYPOSCRIPT: source="FILE:EXT:bootstrap_package/Configuration/TypoScript/ContentElement/constants.typoscript">
+
 
 #############################
 #### EXTENSION OVERRIDES ####
@@ -29,48 +40,11 @@ styles {
 ### PAGE ###
 ############
 page {
-     fluidtemplate {
+    tracking.google.trackingID =
+    fluidtemplate {
         layoutRootPath = EXT:template/Resources/Private/Layouts/Page/
         partialRootPath = EXT:template/Resources/Private/Partials/Page/
         templateRootPath = EXT:template/Resources/Private/Templates/Page/
-    }
-    meta {
-        # cat=template: meta/02_Meta/100; type=string; label=Description: Enter a short description of the page. It will be displayed in the result lists of most search engines.
-        description =
-        # cat=template: meta/02_Meta/110; type=string; label=Author: Enter the page author's name.
-        author =
-        # cat=template: meta/02_Meta/120; type=string; label=Keywords: Enter keywords for the page separated by commas. You may also use short phrases.
-        keywords =
-        # cat=template: meta/02_Meta/130; type=string; label=viewport
-        viewport = width=device-width, initial-scale=1
-        # cat=template: meta/02_Meta/140; type=string; label=robots
-        robots = index,follow
-        # cat=template: meta/02_Meta/150; type=string; label=apple-mobile-web-app-capable
-        apple-mobile-web-app-capable = no
-        # cat=template: meta/02_Meta/160; type=string; label=compatible
-        compatible = IE=edge
-        # cat=template: meta/02_Meta/170; type=string; label=google
-        google = notranslate
-    }
-    tracking {
-        google {
-            # cat=template: tracking/04_Tracking/100; type=string; label=Google: Tracking-ID
-            trackingID =
-            # cat=template: tracking/04_Tracking/110; type=string; label=Google: Tracking-ID
-            anonymizeIp = 1
-        }
-    }
-    socialMedia {
-        # cat=template: social media/03_Social_Media/110; type= string; label=Facebook Profile
-        facebook =
-        # cat=template: social media/03_Social_Media/120; type= string; label=Twitter Profile
-        twitter =
-        # cat=template: social media/03_Social_Media/130; type= string; label=Xing Profile
-        xing =
-        # cat=template: social media/03_Social_Media/140; type= string; label=LinkedIn Profile
-        linkedIn =
-        # cat=template: social media/03_Social_Media/150; type= string; label=YouTube Profile
-        youtube =
     }
 }
 
@@ -78,24 +52,13 @@ page {
 ##############
 ### CONFIG ###
 ##############
-config {
-    # cat=template: config/01_Config/110; type=boolean; label=No Cache
-    no_cache = 0
-    # cat=template: config/01_Config/120; type=options[Do not remove=0,Remove=1,Move to external file=external]; label=Remove default JavaScript
-    removeDefaultJS = 0
-    # cat=template: config/01_Config/130; type=boolean; label=Admin Panel
-    admPanel = 1
-    # cat=template: config/01_Config/140; type=options[None=,All=all,Cached=cached,Output=output]; label=Prefix local Anchors
-    prefixLocalAnchors = all
-    sendCacheHeaders = 1
 
-    // Compression and Concatenation of CSS and JS Files
-    # cat=template: compression/05_Compression/110; type=boolean; label=Compress JS
-    compressJs = 0
-    # cat=template: compression/05_Compression/120; type=boolean; label=Compress CSS
-    compressCss = 0
-    # cat=template: compression/05_Compression/130; type=boolean; label=Concatenate JS
-    concatenateJs = 0
-    # cat=template: compression/05_Compression/140; type=boolean; label=Concatenate CSS
-    concatenateCss = 0
-}
+[applicationContext == "Development"]
+    config {
+        no_cache = 1
+        compressJs = 0
+        compressCss = 0
+        concatenateJs = 0
+        concatenateCss = 0
+    }
+[end]

@@ -2,5 +2,16 @@
 # TCEMAIN
 #
 TCEMAIN {
+    table.pages {
+        # Pages will *not* have "(copy)" appended:
+        disablePrependAtCopy = 1
+    }
+    table.tt_content {
+        # Pages will *not* have "(copy)" appended:
+        disablePrependAtCopy = 1
+    }
 
+    permissions {
+        everybody = 31
+    }
 }
